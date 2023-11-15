@@ -1,5 +1,6 @@
 package com.mashreq.validator.util;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -11,23 +12,33 @@ public class EntityServices {
 
 		DoubleMetaphone doubleMetaphone = new DoubleMetaphone();
 
-		List<String> words1 = Arrays.asList(s1.split(" "));
-		List<String> words2 = Arrays.asList(s2.split(" "));
+		String[] words1= s1.split(" ");
+		String[] words2= s2.split(" ");
+	
+		if(words1[0].length()>1 || words2[0].length()>1) {
+			return doubleMetaphone.isDoubleMetaphoneEqual(words1[0], words2[0]);
+		}else {
+			return false;
+		}
+		
 
-		return words1.stream()
-				.flatMap(word1 -> words2.stream().filter(word2 -> doubleMetaphone.isDoubleMetaphoneEqual(word1, word2)))
-				.findFirst().isPresent();
+		
 	}
 
 	public static boolean firstCharectorMatch(String s1, String s2) {
-		List<String> words1 = Arrays.asList(s1.split(" "));
-		List<String> words2 = Arrays.asList(s2.split(" "));
+		String[] words1= s1.split(" ");
+		String[] words2= s2.split(" ");
+		
+//		System.out.println("fir:"+words1[0].length());
+//		System.out.println("sec:"+words2[0].length());
+		
+		if(words1[0].length()==1 || words2[0].length()==1) {
+			return words1[0].charAt(0)==words2[0].charAt(0);
+		}else {
+			return false;
+		}
 
-		return words1.stream().filter(word1 -> !word1.isEmpty()) // Filter out empty words
-				.findFirst().map(firstWord1 -> words2.stream().filter(word2 -> !word2.isEmpty()) // Filter out empty
-																									// words
-						.findFirst().map(firstWord2 -> firstWord1.charAt(0) == firstWord2.charAt(0)).orElse(false))
-				.orElse(false);
+		
 	}
 	
 	public static String cleaningStings(String s) {

@@ -9,7 +9,10 @@ public class IndividualServices {
         String[] words2 = str2.split(" ");
 
         DoubleMetaphone doubleMetaphone = new DoubleMetaphone();
-
+        String nullCheck=doubleMetaphone.encode(str1);
+        if(nullCheck==null || nullCheck=="") {
+        	return false;
+        }
         for (String word1 : words1) {
             boolean foundMatch = false;
             for (String word2 : words2) {

@@ -105,7 +105,7 @@ public class CommonService {
 	        String phonetic1 = metaphone.encode(word1);
 	        String phonetic2 = metaphone.encode(word2);
 	        System.out.println("comparePhonetically"+phonetic2+":"+phonetic1);
-	        if(phonetic1!="" && phonetic2!="") {
+	        if(phonetic1!=""  && phonetic1!=null) {
 	        	return phonetic1.equals(phonetic2);
 	        }
 	        return false;
