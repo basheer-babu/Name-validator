@@ -1,9 +1,5 @@
 package com.mashreq.validator.util;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import org.apache.commons.codec.language.DoubleMetaphone;
 
 public class EntityServices {

@@ -2,14 +2,10 @@ package com.mashreq.validator.util;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Properties;
 
 import org.apache.commons.codec.language.DoubleMetaphone;
-import org.apache.commons.codec.language.Metaphone;
-import org.springframework.beans.factory.annotation.Value;
 
 import com.mashreq.validator.config.PropertiesToMapExample;
 import com.mashreq.validator.model.TitleValidatorOutput;
@@ -105,7 +101,7 @@ public class CommonService {
 	        String phonetic1 = metaphone.encode(word1);
 	        String phonetic2 = metaphone.encode(word2);
 	        System.out.println("comparePhonetically"+phonetic2+":"+phonetic1);
-	        if(phonetic1!=""  && phonetic1!=null) {
+	        if(!phonetic1.equals("") ) {
 	        	return phonetic1.equals(phonetic2);
 	        }
 	        return false;

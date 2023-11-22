@@ -1,8 +1,6 @@
 package com.mashreq.validator.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 
 import com.mashreq.validator.model.TitleInput;
 import com.mashreq.validator.model.TitleValidatorOutput;
@@ -68,7 +66,7 @@ public class NameValidatorServiceImpl implements NameValidatorService {
 
 	}
 
-	public TitleValidatorOutput individualValidator(TitleInput entityInput) throws Exception {
+	public TitleValidatorOutput individualValidator(TitleInput entityInput)  {
 
 		String inLanguage = entityInput.getPaymentcopy().getLanguage();
 		String text1 = entityInput.getPaymentcopy().getText();
@@ -118,7 +116,7 @@ public class NameValidatorServiceImpl implements NameValidatorService {
 
 	}
 
-	public TitleValidatorOutput entityValidator(TitleInput entityInput) throws Exception {
+	public TitleValidatorOutput entityValidator(TitleInput entityInput)  {
 		
 		String inLanguage = entityInput.getPaymentcopy().getLanguage();
 		String text1 = entityInput.getPaymentcopy().getText();

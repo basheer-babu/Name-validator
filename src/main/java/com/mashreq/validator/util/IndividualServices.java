@@ -10,7 +10,7 @@ public class IndividualServices {
 
         DoubleMetaphone doubleMetaphone = new DoubleMetaphone();
         String nullCheck=doubleMetaphone.encode(str1);
-        if(nullCheck==null || nullCheck=="") {
+        if(nullCheck==null || nullCheck.equals("")) {
         	return false;
         }
         for (String word1 : words1) {
