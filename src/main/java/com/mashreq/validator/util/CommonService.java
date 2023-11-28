@@ -6,8 +6,10 @@ import java.util.List;
 import java.util.Properties;
 
 import org.apache.commons.codec.language.DoubleMetaphone;
+import org.slf4j.LoggerFactory;
 
 import com.mashreq.validator.config.PropertiesToMapExample;
+import com.mashreq.validator.controller.NameController;
 import com.mashreq.validator.model.TitleValidatorOutput;
 
 import me.xdrop.fuzzywuzzy.FuzzySearch;
@@ -21,6 +23,8 @@ public class CommonService {
 	private static double potentialPoint = 79.0;
 	
 	PropertiesToMapExample propertiesToMapExample=new PropertiesToMapExample(); 
+	
+	private static final org.slf4j.Logger log=LoggerFactory.getLogger(CommonService.class);
 //	@Value("${potential.point}")
 //	private double potentialPoint=79.0;
 
@@ -48,7 +52,7 @@ public class CommonService {
 
 			return makeDesition(100.0, matched, "Fuzzy Percentage is matched");
 		} else {
-			System.out.println("ratio" + ratio + "::" + potentialPoint + "::");
+			log.info("ratio" + ratio + "::" + potentialPoint + "::");
 			if (ratio < potentialPoint) {
 				return makeDesition((double) ratio, not_match, "Fuzzy Percentage");
 			} else {
@@ -91,7 +95,7 @@ public class CommonService {
 	        // Join the sorted unique words into a single string
 	        String result = String.join(" ", uniqueWords);
 
-	        return result;
+	        return result.trim();
 	    }
 	 
 	 public static boolean comparePhonetically(String word1, String word2) {
@@ -100,7 +104,7 @@ public class CommonService {
 			metaphone.setMaxCodeLen(100);
 	        String phonetic1 = metaphone.encode(word1);
 	        String phonetic2 = metaphone.encode(word2);
-	        System.out.println("comparePhonetically"+phonetic2+":"+phonetic1);
+	        log.info("comparePhonetically"+phonetic2+":"+phonetic1);
 	        if(!phonetic1.equals("") ) {
 	        	return phonetic1.equals(phonetic2);
 	        }
@@ -135,7 +139,7 @@ public class CommonService {
 	        // Remove the trailing space and return the result
 	        String result = resultBuilder.toString().trim();
 	        
-	        System.out.println("Text after replace Abbreviations::"+result);
+	        log.info("Text after replace Abbreviations::"+result);
 
 	        return result;
 	    }

@@ -1,16 +1,23 @@
 package com.mashreq.validator.config;
 
+import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Properties;
 
+import org.hibernate.validator.internal.util.privilegedactions.GetClassLoader;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 
-import com.mashreq.validator.controller.NameController;
+//import com.mashreq.validator.controller.NameController;
 
 public class PropertiesToMapExample {
 	
@@ -18,9 +25,15 @@ public class PropertiesToMapExample {
 
 	public static Properties GetPropertice() {
 		Properties properties = new Properties();
+		String filename="abbreviations.properties";
+		
+		
 
-		try (FileInputStream fileInputStream = new FileInputStream("src/main/resources/abbreviations.properties")) {
-			properties.load(fileInputStream);
+		try  {
+			InputStream inputStream= PropertiesToMapExample.class.getClassLoader().getResourceAsStream(filename);
+//			BufferedReader reader = new BufferedReader(new FileReader(new File("classpath:abbreviations.properties")));
+			properties.load(inputStream);
+			inputStream.close();
 			return properties;
 		} catch (IOException e) {
 			log.error("error in PropertiesToMapExample"+e.getMessage());

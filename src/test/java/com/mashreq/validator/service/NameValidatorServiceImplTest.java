@@ -47,7 +47,8 @@ class NameValidatorServiceImplTest {
         assertEquals(90.5, output1.getScore(), 0.01);
         assertEquals("Matched", output1.getStatus());
         assertEquals("Valid case", output1.getComment());
-
     }
+    
+    
 	
 }
